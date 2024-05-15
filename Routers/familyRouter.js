@@ -1,9 +1,13 @@
 const {Router}= require("express");
+const familyController = require('../Controllers/familyController');
+
 const familyRouter = new Router();
-const {familiesRepo}= require('../DB/dataRepository')
-familyRouter.get("/", (req ,res)=>{
-    res.status(200).json(familiesRepo.getAllData());
-})
+
+familyRouter.get("/", familyController.getAllFamilies);
+familyRouter.post("/", familyController.createFamily);
+familyRouter.put("/", familyController.editFamily);
+familyRouter.delete("/", familyController.deleteFamily);
+
 
 module.exports={
     familyRouter

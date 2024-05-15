@@ -33,6 +33,13 @@ class DataRepository extends EventEmitter{
         this.setData(newData);
         this.emit("updateData");
     }
+
+    updateAllData(newData){
+        const data = {};
+        data[this.mainEntry] = newData;
+        this.setData(data);
+        this.emit("updateData");
+    }
     getAllData(){
         return this.data;
     }
