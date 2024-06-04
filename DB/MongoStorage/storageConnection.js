@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require("dotenv").config({path:"../../.env"});
+require("dotenv").config();
 const  {familyModel} = require("../Models/families.model");
 
 class StorageConnection{
@@ -11,13 +11,26 @@ class StorageConnection{
     connection(){
         mongoose.connect(process.env.MONGO_URI)
             .then(() => {console.log("Connect to Data Base")})
-            .catch((error) => {console.error("Bad connection");})
+            .catch((error) => {console.error("Bad connection", error);})
     }
 
-    find(){
-        return this.Model.find({});
+    async find(query){
+        return await this.Model.find(query);
+    }
+
+    async insert(data){
+        return await this.Model.insertMany(data);
+    }
+
+    async remove(id){ // name = { name : "example"}
+       return await this.Model.findByIdAndDelete(id);
+    }
+
+    async update(data, updateData){
+        return await this.Model.updateOne(data,updateData);
     }
 }
 
-const familiesStorage = new StorageConnection(familyModel);
-familiesStorage.find().then((data)=> console.log(data));
+module.exports = {
+     familiesStorage : new StorageConnection(familyModel)
+}

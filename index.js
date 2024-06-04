@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 
 const {familyRouter} = require("./Routers/familyRouter");
+
 app.use(express.json());
 
 app.use("/api/families", familyRouter);
