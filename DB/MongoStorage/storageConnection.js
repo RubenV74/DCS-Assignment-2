@@ -19,7 +19,7 @@ class StorageConnection{
     }
 
     async insert(data){
-        return await this.Model.insertMany(data);
+        return await this.Model.insertMany(data, {validateBeforeSave: true });
     }
 
     async remove(id){ // name = { name : "example"}
@@ -27,7 +27,7 @@ class StorageConnection{
     }
 
     async update(data, updateData){
-        return await this.Model.updateOne(data,updateData);
+        return await this.Model.updateMany(data,updateData ,{runValidators: true});
     }
 }
 
