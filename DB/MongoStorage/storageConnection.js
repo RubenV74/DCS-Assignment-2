@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 const  {familyModel} = require("../Models/families.model");
+const logger = require("../../Logger/logger");
 
 class StorageConnection{
     constructor(model) {
@@ -10,8 +11,8 @@ class StorageConnection{
 
     connection(){
         mongoose.connect(process.env.MONGO_URI)
-            .then(() => {console.log("Connect to Data Base")})
-            .catch((error) => {console.error("Bad connection", error);})
+            .then(() => {logger.info("connect","Connect to Data Base")})
+            .catch((error) => {logger.error("ERROR",`Bad Connection: ${error}`);})
     }
 
     async find(query){
@@ -19,7 +20,7 @@ class StorageConnection{
     }
 
     async insert(data){
-        return await this.Model.insertMany(data, {validateBeforeSave: true });
+        return await this.Model.create(data);
     }
 
     async remove(id){ // name = { name : "example"}
@@ -27,7 +28,7 @@ class StorageConnection{
     }
 
     async update(data, updateData){
-        return await this.Model.updateMany(data,updateData ,{runValidators: true});
+        return await this.Model.updateMany(data,updateData);
     }
 }
 

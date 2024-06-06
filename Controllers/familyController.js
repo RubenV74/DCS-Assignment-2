@@ -62,9 +62,9 @@ const getFamilyById = async (req, res, next) => {
 const createFamily = async (req, res, next) => {
     try {
         const {body} = req;
-        if (!body.name || !body.members || !(body.members instanceof Array) || !(body.name instanceof String)){
-            throw new Error("Create is NOT valid!");
-        }
+        // if (!body.name || !body.members || !(body.members instanceof Array) || !(body.name instanceof String)){
+        //     throw new Error("Create is NOT valid!");
+        // }
         await familiesStorage.insert(body);
         res.status(200).send('Family saved to data');
     }
