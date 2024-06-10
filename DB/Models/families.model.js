@@ -3,7 +3,7 @@ const {Schema, model} = require("mongoose");
 const validateName = (name) =>  typeof name == 'string';
 const validateMember = (members) =>  Array.isArray(members) && members.every(member => typeof member === 'string');
 
-const familySchema = new Schema({
+const familySchema = (collectionName) =>  new Schema({
     name: {
         type: String,
         required: [true, 'name is required!'],
@@ -20,9 +20,12 @@ const familySchema = new Schema({
             message: props => `${props.value} is not an array of type string`
         }
     }
-},{collection:"families"});
+},{collection: collectionName});
 
-const familyModel = model("family", familySchema);
+const familyModel = model("family", familySchema('families'));
+const testModel = model("test", familySchema('tests'));
 
-module.exports = {familyModel};
+module.exports = {
+    familyModel,
+    testModel};
 

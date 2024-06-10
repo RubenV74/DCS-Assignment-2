@@ -9,8 +9,8 @@ class StorageConnection{
         this.connection();
     }
 
-    connection(){
-        mongoose.connect(process.env.MONGO_URI)
+    async connection(mongoURI = process.env.MONGO_URI){
+       return await mongoose.connect(mongoURI)
             .then(() => {logger.info("connect","Connect to Data Base")})
             .catch((error) => {logger.error("ERROR",`Bad Connection: ${error}`);})
     }
@@ -33,5 +33,5 @@ class StorageConnection{
 }
 
 module.exports = {
-     familiesStorage : new StorageConnection(familyModel)
+    familiesStorage : new StorageConnection(familyModel)
 }
