@@ -31,12 +31,13 @@ This project is a part of DCS (Distributed Computing Systems) Assignment 2. It i
 
 ## Usage
 
-1. Start the server:
+Start the server:
 
-   ```bash
+   ```
    node index.js
+   ```
 
-2. The server will run on the port specified in the `.env` file.
+The server will run on the port specified in the `.env` file.
 
 ## Environment Variables
 
