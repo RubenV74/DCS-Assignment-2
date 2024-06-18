@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 const logger = require("./Logger/logger");
+const cors = require("cors");
 
 const {familyRouter} = require("./Routers/familyRouter");
 const {info} = require("winston");
 
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/families", familyRouter);
