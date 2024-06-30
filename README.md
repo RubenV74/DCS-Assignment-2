@@ -51,6 +51,10 @@ This file should not be committed to version control for security reasons. Make 
 
 ## API Endpoints
 
+### Documentation Postman
+
+https://documenter.getpostman.com/view/32178673/2sA3duHDhw
+
 ### Get Specify Family
 - URL: `/api/families/name/SpecifyFamily`
 - Method: `GET`
